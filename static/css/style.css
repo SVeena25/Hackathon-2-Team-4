@@ -1,3 +1,18 @@
 h1 {
     color: red;
 }
+
+.hero-image {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.2), 0 7px 7px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+}
+body {
+    background: #f5f7fa;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 3px 2px rgba(0, 0, 0, 0.2), 0 7px 7px rgba(0, 0, 0, 0.15);
+}
+h1 {
+    color: red;
+}
