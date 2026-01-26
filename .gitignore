@@ -26,3 +26,4 @@ Thumbs.db
 
 # Others
 *.sqlite3
+env.py
