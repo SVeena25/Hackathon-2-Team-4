@@ -30,3 +30,4 @@ Thumbs.db
 # Others
 *.sqlite3
 env.py
+.claude/settings.local.json
