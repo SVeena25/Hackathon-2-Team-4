@@ -1,27 +1,104 @@
 {% extends "base.html" %}
 
-{% block title %}Task List | Toodle Booking{% endblock %}
+{% block title %}Task List | Toodle{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <h2 class="mb-4">Task List</h2>
+        <h2 class="mb-4">My Tasks</h2>
+        <a href="{% url 'task_create' %}" class="btn btn-success mb-3">+ Add New Task</a>
+
         {% if tasks %}
             <ul class="list-group">
                 {% for task in tasks %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ task }}
-                        <span>
+                    <li class="list-group-item d-flex justify-content-between align-items-center task-item" data-task-id="{{ task.id }}">
+                        <div class="task-content">
+                            <input type="checkbox" class="task-checkbox me-3" data-task-id="{{ task.id }}" {% if task.status %}checked{% endif %}>
+                            <span class="task-title {% if task.status %}completed{% endif %}">{{ task.title }}</span>
+                        </div>
+                        <div class="task-actions">
                             <a href="{% url 'task_edit' task.id %}" class="btn btn-sm btn-primary">Edit</a>
                             <a href="{% url 'task_delete' task.id %}" class="btn btn-sm btn-danger">Delete</a>
-                        </span>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No tasks found.</p>
+            <p class="text-muted">No tasks yet. Create one to get started!</p>
         {% endif %}
-        <a href="{% url 'task_create' %}" class="btn btn-success mt-3">Add New Task</a>
     </div>
 </div>
+
+<style>
+    .task-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .task-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    .task-title {
+        font-size: 16px;
+    }
+
+    .task-title.completed {
+        text-decoration: line-through;
+        color: #6c757d;
+    }
+
+    .task-actions {
+        display: flex;
+        gap: 8px;
+    }
+</style>
+
+<script>
+document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const taskId = this.getAttribute('data-task-id');
+        const isCompleted = this.checked;
+        const taskTitle = this.closest('.task-item').querySelector('.task-title');
+
+        // Toggle strikethrough styling
+        if (isCompleted) {
+            taskTitle.classList.add('completed');
+        } else {
+            taskTitle.classList.remove('completed');
+        }
+
+        // Send update to server
+        fetch(`/tasks/${taskId}/toggle/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ completed: isCompleted })
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
 {% endblock %}
+
