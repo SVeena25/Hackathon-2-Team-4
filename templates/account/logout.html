@@ -1,35 +1,30 @@
-{% extends 'base.html' %}
-{% load i18n %}
-{% load static %}
+{% extends 'base.html' %} {% load i18n %} {% load static %} {% block title %}{%
+trans "Sign Out" %} | Toodle{% endblock %} {% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">{% trans "Sign Out" %}</h2>
 
-{% block meta_title %}{% trans "Sign Out" %}{% endblock %}
+                <p class="text-muted mb-4">
+                    {% trans "Are you sure you want to sign out?" %}
+                </p>
 
-{% block logo %}
-    <div class="pt-3 m-3" style="width: 200px;">
-        {% include 'components/dynamic_icons/6x_labs_logo.svg' %}
+                {% url 'account_logout' as logout_url %}
+                <form method="post" action="{{ logout_url }}">
+                    {% csrf_token %} {{ redirect_field }}
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-danger">
+                            {% trans "Sign Out" %}
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary"
+                            >{% trans "Cancel" %}</a
+                        >
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-{% endblock logo %}
-
-{% block content %}
-    <h1 class="display-4 fw-bold pb-3">{% trans "Sign out" %}</h1>
-
-    <p class="text-muted pb-3">
-        {% trans "Are you sure you want to sign out?" %}
-    </p>
-
-    {% url 'account_logout' as logout_url %}
-    <form method="post" action="{{ logout_url }}">
-        {% csrf_token %}
-        {{ redirect_field }}
-
-        <button type="submit" class="btn-auth">{% trans "Sign out" %}</button>
-    </form>
-
-    <div class="pb-3 text-muted">
-        <a href="{% url 'home' %}">{% trans "Cancel" %}</a>
-    </div>
-{% endblock content %}
-
-{% block footer %}
-    <p class="pt-3 text-muted small">{% trans "You will be logged out of your account." %}</p>
-{% endblock footer %}
+</div>
+{% endblock %}

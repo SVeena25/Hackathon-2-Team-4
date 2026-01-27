@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 
-
 from pathlib import Path
 import os
 import dj_database_url
@@ -34,8 +33,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', 
-                'toodle-e469f23d164f.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'toodle-e469f23d164f.herokuapp.com']
 
 # CSRF trusted origins for deployment
 CSRF_TRUSTED_ORIGINS = [
@@ -139,7 +138,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -154,3 +152,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django-allauth settings
 SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_REDIRECT_URL = 'task_list'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'

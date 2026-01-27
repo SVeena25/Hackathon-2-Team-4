@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Task List | Toodle{% endblock %}
 
@@ -29,34 +30,7 @@
     </div>
 </div>
 
-<style>
-    .task-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px;
-    }
 
-    .task-content {
-        display: flex;
-        align-items: center;
-        flex: 1;
-    }
-
-    .task-title {
-        font-size: 16px;
-    }
-
-    .task-title.completed {
-        text-decoration: line-through;
-        color: #6c757d;
-    }
-
-    .task-actions {
-        display: flex;
-        gap: 8px;
-    }
-</style>
 
 <script>
 document.querySelectorAll('.task-checkbox').forEach(checkbox => {
