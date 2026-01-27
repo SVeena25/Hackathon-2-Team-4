@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--medium-blue);
 }
 
-.btn-primary-outline{
+.btn-outline-primary{
     background-color: var(--white);
     border: 2px solid var(--navy-blue);
     color: var(--navy-blue);
