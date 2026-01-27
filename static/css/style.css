@@ -1,6 +1,6 @@
 /*Root Variables*/
 :root {
-    --primary-colour : #FFF8F0;
+    --primary-colour : #ffffffbd;
     --text-colour: #1E3A5F;
 }
 
@@ -19,4 +19,12 @@ h3,
 h4,
 h5{
     color: var(--text-colour);
+}
+
+/*Button Styles*/
+
+.btn-custom{
+    background-color: var(--text-colour);
+    color: var(--primary-colour);
+    border: var(--text-colour) 2px solid;
 }
