@@ -15,12 +15,12 @@ from pathlib import Path
 import os
 import dj_database_url
 
-if os.path.isfile("env.py"):
-    import env
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+if os.path.isfile(os.path.join(BASE_DIR, "env.py")):
+    import env
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
@@ -34,6 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1',
+                 'localhost',
                  'toodle-e469f23d164f.herokuapp.com',
                  'toodle-test-33714d35eb31.herokuapp.com']
 
