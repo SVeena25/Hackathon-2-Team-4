@@ -31,7 +31,27 @@ class TaskListView(LoginRequiredMixin, ListView):
 	login_url = 'account_login'
 
 	def get_queryset(self):
-		return Task.objects.filter(user=self.request.user)
+		queryset = Task.objects.filter(user=self.request.user)
+		
+		# Get sorting parameter from URL
+		sort_by = self.request.GET.get('sort', 'newest')
+		
+		# Apply sorting
+		if sort_by == 'oldest':
+			queryset = queryset.order_by('id')
+		elif sort_by == 'alphabetical':
+			queryset = queryset.order_by('title')
+		elif sort_by == 'status':
+			queryset = queryset.order_by('status', '-id')
+		else:  # newest (default)
+			queryset = queryset.order_by('-id')
+		
+		return queryset
+	
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['current_sort'] = self.request.GET.get('sort', 'newest')
+		return context
 
 
 class TaskForm(forms.ModelForm):

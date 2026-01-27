@@ -166,3 +166,5 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = 'task_list'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True  # Allow logout via GET request (no confirmation needed)
+# Alternatively, set to False to require POST confirmation
