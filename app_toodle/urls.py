@@ -1,3 +1,4 @@
+
 from django.urls import path
 from django.views.generic import RedirectView
 from . import views
@@ -14,4 +15,5 @@ urlpatterns = [
          name='task_delete'),
     path('tasks/<int:pk>/toggle/', views.task_toggle_status,
          name='task_toggle'),
+    path('login/', RedirectView.as_view(url='/accounts/login/', permanent=False)),
 ]
