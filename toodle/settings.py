@@ -34,12 +34,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 'toodle-e469f23d164f.herokuapp.com']
+                 'toodle-e469f23d164f.herokuapp.com',
+                 'toodle-test-33714d35eb31.herokuapp.com']
 
 # CSRF trusted origins for deployment
 CSRF_TRUSTED_ORIGINS = [
     'https://*.herokuapp.com',
-    'https://toodle-e469f23d164f.herokuapp.com'
+    'https://toodle-e469f23d164f.herokuapp.com',
+    'https://toodle-test-33714d35eb31.herokuapp.com'
 ]
 
 
