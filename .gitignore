@@ -1,9 +1,12 @@
-# Python
+
+# Python bytecode
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 *.pyc
+*.py.class
+
 
 # Django
 *.log

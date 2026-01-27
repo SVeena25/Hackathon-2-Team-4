@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Home | Toodle Booking{% endblock %}
+{% block title %}To Do | Toodle{% endblock %}
 
 {% block content %}
-<div class="jumbotron text-center hero-image">
-    <h1 class="display-4">Welcome to Toodle Booking!</h1>
-    <p class="lead">Book appointments, events, or services with ease.</p>
-    <hr class="my-4">
-    <p>Browse available services, register, and manage your bookings all in one place.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+<div class="landing-container d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
+    <div class="wireframe-img mb-4 w-100" style="max-width:600px; aspect-ratio: 3/1; background:#e9ecef; border:2px solid #ccc; display:flex; align-items:center; justify-content:center;">
+        <span class="fs-2 fw-bold">To Do</span>
+    </div>
+    <a class="btn btn-outline-primary btn-lg shadow-sm" href="{% url 'login' %}">Log in to see your Lists</a>
 </div>
 {% endblock %}
