@@ -186,3 +186,25 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Allauth email settings
 ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'none' to disable email verification
 ACCOUNT_EMAIL_REQUIRED = True
+
+# Logging configuration (send errors to console/Heroku logs)
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}
