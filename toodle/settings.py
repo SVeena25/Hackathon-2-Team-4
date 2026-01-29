@@ -177,7 +177,6 @@ ACCOUNT_LOGOUT_ON_GET = True  # Allow logout via GET request (no confirmation ne
 ACCOUNT_FORMS = {
     'signup': 'app_toodle.forms.CustomSignupForm',
     'login': 'app_toodle.forms.CustomLoginForm',
-    'reset_password': 'app_toodle.forms.CustomResetPasswordForm',
 }
 
 # Email configuration
