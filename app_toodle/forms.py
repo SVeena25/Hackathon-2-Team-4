@@ -10,7 +10,8 @@ class CustomSignupForm(SignupForm):
         # Add Bootstrap classes to all fields
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label
+            if field.label:
+                field.widget.attrs['placeholder'] = str(field.label)
 
 
 class CustomLoginForm(LoginForm):
@@ -21,4 +22,5 @@ class CustomLoginForm(LoginForm):
         # Add Bootstrap classes to all fields
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
-            field.widget.attrs['placeholder'] = field.label
+            if field.label:
+                field.widget.attrs['placeholder'] = str(field.label)
