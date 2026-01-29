@@ -172,3 +172,27 @@ LOGIN_REDIRECT_URL = 'task_list'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True  # Allow logout via GET request (no confirmation needed)
 # Alternatively, set to False to require POST confirmation
+
+# Custom allauth forms with Bootstrap styling
+ACCOUNT_FORMS = {
+    'signup': 'app_toodle.forms.CustomSignupForm',
+    'login': 'app_toodle.forms.CustomLoginForm',
+    'reset_password': 'app_toodle.forms.CustomResetPasswordForm',
+}
+
+# Email configuration
+if DEBUG:
+    # For development: print emails to console instead of sending
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    # For production: configure your email backend here
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True') == 'True'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+# Allauth email settings
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # or 'none' to disable email verification
+ACCOUNT_EMAIL_REQUIRED = True
